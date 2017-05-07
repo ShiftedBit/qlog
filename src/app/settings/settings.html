@@ -8,15 +8,16 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      {{item.id}}
-      <div class="item-note" item-right>
-        {{item.callFrom}} - {{item.callTo}}
-      </div>
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.id}}</b>
-  </div>
+  <ion-card>
+    <ion-card-header>
+      QSO Services Settings
+    </ion-card-header>
+
+    <ion-list *ngIf="loggingServices">
+      <button ion-item *ngFor="let loggingService of loggingServices" (click)="itemTapped($event, loggingService)">
+        <ion-icon name="settings" item-left></ion-icon>
+        {{loggingService.name}}
+      </button>
+    </ion-list>
+  </ion-card>
 </ion-content>

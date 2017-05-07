@@ -1,29 +1,18 @@
 import {Injectable} from "@angular/core";
-import {Settings} from "./settings";
-import {LoggingService} from "./settings";
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/of';
+import {Http} from "@angular/http";
+import {Observable} from "rxjs/Observable";
+import {ILoggingService} from "./settings.interface";
+import 'rxjs/Rx';
 
 @Injectable()
 export class SettingsProvider {
 
-  private settings: Settings;
+  constructor(public http: Http) {
 
-  constructor() {
-
-    var clublog = new LoggingService(
-      'Clublog', 'http://www.clublog.org', 'OE1MAX', 'Mko0Nji9'
-    );
-
-    var loggingServices: LoggingService[] = [];
-    loggingServices.push(clublog);
-
-    this.settings = new Settings(loggingServices);
   }
 
-  getLoggingServices() {
-    return Observable.
+  getLoggingServices(): Observable<ILoggingService[]> {
+    return this.http.get('assets/data/logging.services.json')
+      .map(res => res.json());
   }
 }

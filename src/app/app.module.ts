@@ -13,6 +13,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {ClublogService} from "./qsos/services/clublog.service";
 import {HttpModule} from "@angular/http";
 import {SettingsPage} from "./settings/settings.page";
+import {SettingsProvider} from "./settings/settings.provider";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {SettingsPage} from "./settings/settings.page";
     StatusBar,
     SplashScreen,
     ClublogService,
+    SettingsProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
